@@ -10,21 +10,17 @@ services:
       - '5432:5432'
     volumes: 
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - backend
+
   flask:
     build: .
+    restart: on-failure:10
     ports:
       - "5000:5000"
     depends_on:
       - db
     volumes:
       - ./app.py:/app.py
-    networks:
-      - backend
+      - ./db/db_client.py:/db/db_client.py
+
 volumes:
   db:
-    driver: local
-networks:
-  backend:
-    driver: bridge

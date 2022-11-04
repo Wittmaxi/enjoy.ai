@@ -13,7 +13,8 @@ class Db_client:
     def query(self, query):
         return_val = {}
         try:
-            return_val["success"] = self.cursor.execute(query) 
+            self.cursor.execute(query)
+            return_val["success"] = self.cursor.fetchone()
         except (Exception, psycopg2.DatabaseError) as error:
             return_val["error"] = error
         
