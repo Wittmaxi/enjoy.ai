@@ -9,11 +9,22 @@ services:
     ports:
       - '5432:5432'
     volumes: 
-      - db:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - backend
   flask:
     build: .
     ports:
       - "5000:5000"
+    depends_on:
+      - db
+    volumes:
+      - ./app.py:/app.py
+    networks:
+      - backend
 volumes:
   db:
     driver: local
+networks:
+  backend:
+    driver: bridge
