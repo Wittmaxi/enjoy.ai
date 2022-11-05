@@ -4,7 +4,7 @@ from util.merge_audio import merge_audio
 
 def generate_audio(mood, db):
     song_path = '/generated_songs'
-    output_path = f'{song_path}/{mood}.wav' 
+    output_file = f'{song_path}/{mood}.wav' 
 
     if not os.path.exists(song_path):
         os.mkdir(song_path)
@@ -18,8 +18,9 @@ def generate_audio(mood, db):
         duration=60,
         bpm=25.3 * mood,
         tone=math.pi * mood ** 0.8,
-        filename=f'{song_path}/tmp/{mood}_synth.wav'
+        filename=synth_path
     )
+
     partial_waveforms.append(synth_path)
     gains[synth_path] = 10
 
@@ -31,11 +32,13 @@ def generate_audio(mood, db):
     nature_sounds = [f'/app/soundfiles/nature/{x}' for x in os.listdir('soundfiles/nature')]
     partial_waveforms.append(nature_sounds[int(mood * 6 // 25)])
 
+    print('Merging partial waveforms ', partial_waveforms)
+
     merge_audio(
         in_sources=partial_waveforms, 
-        out_file_name=output_path,
+        out_file_name=output_file,
         time_duration=60000
     )
 
-    db.add_generated_audio(mood, output_path)
+    db.add_generated_audio(mood, output_file)
 

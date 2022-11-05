@@ -1,6 +1,5 @@
 from __future__ import division
 import random
-import sys
 from mido import Message, MetaMessage, MidiFile, MidiTrack, MAX_PITCHWHEEL, bpm2tempo
 import fluidsynth
 from midi2audio import FluidSynth
@@ -8,7 +7,6 @@ from midi2audio import FluidSynth
 soundfont_dir = '/app/FluidR3_GM.sf2'
 
 class AI_synth():
-    # create random midi, save file as 
     def ai_create_midi(self, duration: float, bpm: float, tone: float, filename) -> None:
         outfile = MidiFile()
         track = MidiTrack()

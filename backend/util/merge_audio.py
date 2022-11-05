@@ -14,11 +14,10 @@ def merge_audio (in_sources, out_file_name, gain={}, time_duration=60000):
     for source_name in in_sources:
         source_object = AudioSegment.from_file (source_name)
 
-        if source_name in gain:
-            source_object += gain[source_name]
+        # if source_name in gain:
+        #     source_object += gain[source_name]
         # else:
         #     source_object -= 100
-
 
         sound_length = len (source_object)
         caret = 0
@@ -33,7 +32,7 @@ def merge_audio (in_sources, out_file_name, gain={}, time_duration=60000):
 #     wav_file = 'midi/ai_output.wav'
 #
 #     merge_audio(
-#         [wav_file, 'soundfiles/nature/fire.wav', 'soundfiles/binaural/binaural_low.wav'],
+#         [wav_file, 'soundfiles/nature/rustling_leaves.mp3', 'soundfiles/binaural/binaural_low.wav'],
 #         'merged.wav'
 #     )
 #
