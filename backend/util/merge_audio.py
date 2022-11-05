@@ -16,8 +16,8 @@ def merge_audio (in_sources, out_file_name, gain={}, time_duration=60000):
 
         if source_name in gain:
             source_object += gain[source_name]
-        else:
-            source_object -= 100
+        # else:
+        #     source_object -= 100
 
 
         sound_length = len (source_object)
@@ -28,3 +28,12 @@ def merge_audio (in_sources, out_file_name, gain={}, time_duration=60000):
             caret += sound_length
 
     base_source.export(out_file_name, format="wav")
+
+# if __name__=='__main__':
+#     wav_file = 'midi/ai_output.wav'
+#
+#     merge_audio(
+#         [wav_file, 'soundfiles/nature/fire.wav', 'soundfiles/binaural/binaural_low.wav'],
+#         'merged.wav'
+#     )
+#

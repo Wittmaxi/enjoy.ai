@@ -17,7 +17,6 @@ class AI_synth():
         track.append(Message('program_change', program=12))
 
         delta = 300
-        # ticks_per_expr = int(sys.argv[1]) if len(sys.argv) > 1 else 20
         ticks_per_expr = 20
 
         while outfile.length < duration:
@@ -43,9 +42,15 @@ class AI_synth():
         self.ai_create_midi(duration, bpm, tone, tmp_name)
         self.midi_to_wav(tmp_name, filename)
     
-if __name__=='__main__':
-    soundfont_dir = './FluidR3_GM.sf2'
-    synth = AI_synth()
-    # midi_file = 'ai_output.mid'
-    wav_file = 'ai_output.wav'
-    synth.ai_create_wav(60, 200, 80, wav_file)
+# if __name__=='__main__':
+#     soundfont_dir = './midi/FluidR3_GM.sf2'
+#     synth = AI_synth()
+#     # midi_file = 'ai_output.mid'
+#     wav_file = 'ai_output.wav'
+#     mood = 12
+#     synth.ai_create_wav(
+#         duration=60,
+#         bpm=25.3 * mood,
+#         tone=3.14 * mood ** 1.2, 
+#         filename=wav_file)
+#
