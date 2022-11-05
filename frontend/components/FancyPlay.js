@@ -3,7 +3,7 @@ import Svg, { Path, G, Circle, Defs } from "react-native-svg"
 /* SVGR has dropped some elements not supported by react-native-svg: filter */
 
 const FancyPlay = (props) => (
-  <Svg
+<Svg
     width={214}
     height={222}
     fill="none"

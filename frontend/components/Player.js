@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { Icon } from "@rneui/base";
-import PlayButton from './PlayButton';
 
 import { usePlayAudio } from '../usePlayAudio'
 import FancyPlay from './FancyPlay';
-import FancyPlayPaused from './FanncyPlayPaused';
+import FancyPlayPause from './FanncyPlayPause';
 
 export default ({ uri }) => {
 
@@ -27,11 +26,10 @@ export default ({ uri }) => {
 
   return (
     <View>
-      <PlayButton></PlayButton>
       <Pressable
         onPress={toggleStartStop}
       >
-        {isPlaying ? <FancyPlayPaused></FancyPlayPaused> : <FancyPlay></FancyPlay>}
+        {isPlaying ? <FancyPlayPause></FancyPlayPause> : <FancyPlay></FancyPlay>}
       </Pressable>
       <Pressable
         onPress={() => {

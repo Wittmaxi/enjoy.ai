@@ -2,7 +2,7 @@ import * as React from "react"
 import Svg, { Path, G, Circle, Defs } from "react-native-svg"
 /* SVGR has dropped some elements not supported by react-native-svg: filter */
 
-const FancyPlayPaused = (props) => (
+const FancyPlayPause = (props) => (
   <Svg
     width={214}
     height={222}
@@ -28,9 +28,9 @@ const FancyPlayPaused = (props) => (
     <G filter="url(#a)">
       <Circle cx={107.358} cy={112.407} r={60.765} fill="#9EC7ED" />
     </G>
-    <Path fill="#D9D9D9" d="M111 106h3v13h-3zM102 106h3v13h-3z" />
+    <Path fill="#D9D9D9" d="M110 107h3v13h-3zM101 107h3v13h-3z" />
     <Defs></Defs>
   </Svg>
 )
 
-export default FancyPlayPaused
+export default FancyPlayPause

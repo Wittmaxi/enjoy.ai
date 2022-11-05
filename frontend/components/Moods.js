@@ -7,26 +7,28 @@ import SadButton from './mood_buttons/SadButton';
 import SleepyButton from './mood_buttons/SleepyButton';
 
 
-function renderSwitch(emotion) {
-  switch(emotion) {
-    case 'Happy':
-      return <HappyButton></HappyButton>
-    case 'Sad':
-      return <SadButton></SadButton>
-    case 'Sleepy':
-      return <SleepyButton></SleepyButton>
-    case 'Motivated':
-      return <MotivatedButton></MotivatedButton>
-    case 'Anxious':
-      return <AnxiousButton></AnxiousButton>
-    default:
-      return <></>
-  }
-}
+
 
 export default ({ handleUpdate }) => {
   const values = ['Happy', 'Sad', 'Sleepy', 'Motivated', 'Anxious']
   const [selectedValue, setSelectedValue] = useState(values[0])
+
+  function renderSwitch(emotion) {
+    switch(emotion) {
+      case 'Happy':
+          return <HappyButton selected={selectedValue == emotion}></HappyButton>
+      case 'Sad':
+        return <SadButton selected={selectedValue == emotion}></SadButton>
+      case 'Sleepy':
+        return <SleepyButton selected={selectedValue == emotion}></SleepyButton>
+      case 'Motivated':
+        return <MotivatedButton selected={selectedValue == emotion}></MotivatedButton>
+      case 'Anxious':
+        return <AnxiousButton selected={selectedValue == emotion}></AnxiousButton>
+      default:
+        return <></>
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -38,7 +40,7 @@ export default ({ handleUpdate }) => {
             handleUpdate(values.indexOf(value) + 1)
           }}
         >
-            {renderSwitch(value)}
+            {renderSwitch(value, selectedValue)}
         </TouchableOpacity>
       ))}
     </View>
