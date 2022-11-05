@@ -6,7 +6,7 @@ from clients import Clients
 from util.merge_audio import merge_audio
 from weather import Weather_model
 from midi.midi_ml import AI_synth
-import Math
+import math
 from backend.mood_gen_ml import generate_mood
 app = Flask(__name__)
 
@@ -38,11 +38,21 @@ def request_audio():
                     + 15 * curr_weather['wind_speed']
                     - 100 * curr_weather['rain'] ** 0.5
             ),
-            tone=(Math.sqrt(mood) * 13.4 - curr_weather['rain'] * Math.Pi),
+            tone=(math.sqrt(mood) * 13.4 - curr_weather['rain'] * math.pi),
             filename=f'{uuid}/synth.wav'
         )
-
         partial_waveforms.append(f'{uuid}/synth.wav')
+
+        if mood > 2:
+            partial_waveforms.append('soundfiles/binaural/binaural_high.wav')
+        else:
+            partial_waveforms.append('soundfiles/binaural/binaural_low.wav')
+    
+        nature_sounds = [f'soundfiles/nature/{x}' for x in os.listdir('soundfiles/nature')]
+        if curr_weather['rain'] > 0.0:
+            partial_waveforms.append('soundfiles/nature/waves.wav')
+        else:
+            partial_waveforms.append(nature_sounds[int(mood**3 - curr_weather['wind_speed'] * math.e) % 6])
 
         merge_audio(
             in_sources=partial_waveforms, 
@@ -54,6 +64,7 @@ def request_audio():
         new_client = clients.add_client()
         mood = generate_mood(json_)
         clients.add_client_mood(new_client, str(mood)) 
+        
 
         # generating personalized audio for client
         generate_audio(new_client, mood)
