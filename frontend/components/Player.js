@@ -10,10 +10,7 @@ export default ({ uri }) => {
   const { setAudio, play, pause, reset } = usePlayAudio()
 
   useEffect(() => {
-    console.log('URI: ', uri)
     setAudio(uri)
-    // setAudio('http://35.228.240.243/stream/92d653a5-25ad-4ec1-ad06-02f0149f0007')
-    // setAudio('https://stream.bauermedia.fi/radionova/radionova_64.aac')
   }, [uri])
 
   const toggleStartStop = () => {

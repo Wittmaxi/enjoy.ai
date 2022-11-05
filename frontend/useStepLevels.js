@@ -3,16 +3,16 @@ import { DeviceEventEmitter, PermissionsAndroid } from "react-native"
 import { Pedometer } from 'expo-sensors'
 
 export const StepState = {
-  STILL: 'still',
-  EASY: 'easy',
-  INTENSE: 'intense',
+  STILL: 0,
+  EASY: 3,
+  INTENSE: 5,
 }
 
 export const useStepLevels = () => {
   const [hasPermission, setHasPermission] = useState(null)
   const [steps, setSteps] = useState(0)
   const [stepState, setStepState] = useState(StepState.STILL)
-  const [stepEvents, setStepEvents] = useState([])
+
   useEffect(() => {
     const result = Pedometer.requestPermissionsAsync().then((result) => {
       setHasPermission(Boolean(result.granted))
@@ -20,51 +20,34 @@ export const useStepLevels = () => {
     })
   }, [])
   useEffect(() => {
-    console.log(hasPermission)
-    const requestStepsPermission = async () => {
-      try {
-        const test = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACTIVITY_RECOGNITION)
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.ACTIVITY_RECOGNITION,
-          {
-            title: "Steps",
-            message: "Need to access steps",
-            buttonNeutral: "Ask Me Later",
-            buttonNegative: "Cancel",
-            buttonPositive: "OK"
-          }
-        );
-        console.log('done')
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log("You can access the steps");
-        } else {
-          console.log("Steps permission denied");
-        }
-      } catch (err) {
-        console.warn(err)
+    const step = (stepEvents) => {
+      const now = new Date().getTime()
+      const timestamps = [now, ...stepEvents].filter((ts) => (
+        now - ts < 10000
+      ))
+      setSteps(timestamps.length)
+      if (timestamps.length > 5) {
+        setStepState(StepState.INTENSE)
+      } else if (timestamps.length > 0) {
+        setStepState(StepState.EASY)
+      } else {
+        setStepState(StepState.STILL)
       }
+      return timestamps
     }
-    requestStepsPermission()
     if (hasPermission) {
-      const subscriber = Pedometer.watchStepCount((data) => {
-        console.log(data)
-        setSteps(data.steps)
-        const now = new Date().getTime()
-        const timestamps = [now, ...stepEvents].filter((ts) => (
-          now - ts < 10000
-        ))
-        if (timestamps > 5) {
-          setStepState(StepState.INTENSE)
-        } else if (timestamps > 0) {
-          setStepState(StepState.EASY)
-        } else {
-          setStepState(StepState.STILL)
-        }
-        setStepEvents(timestamps)
-      })
+      const subscriber = Pedometer.watchStepCount(step)
       return () => {
         subscriber.remove()
       }
+    } else {
+      // If no sensor permission - generate random data
+      const takeStep = (seed, stepEvents) => {
+        const newEvents = step(stepEvents)
+        const sleepTime = seed * Math.random() * 800
+        setTimeout(() => takeStep(seed + 1 % 8, newEvents), sleepTime)
+      }
+      takeStep(1, [])
     }
   }, [hasPermission])
 

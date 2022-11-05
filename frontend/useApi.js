@@ -32,6 +32,7 @@ export const useApi = () => {
   }
 
   const sendUpdate = async ({ type, value }) => {
+    console.log(type, value)
     try {
       setParamState({
         ...paramState,

@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Audio } from "expo-av"
 
 export const usePlayAudio = () => {
   const [sound, setSound] = useState()
   const setAudio = async (uri) => {
-    const sound = new Audio.Sound()
-    setSound(sound)
-    await sound.loadAsync({
-      uri
-    })
+    if (uri) {
+      const sound = new Audio.Sound()
+      setSound(sound)
+      await sound.loadAsync({
+        uri
+      })
+    }
   }
 
   const play = () => {

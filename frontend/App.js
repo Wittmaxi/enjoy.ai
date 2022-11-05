@@ -6,11 +6,23 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useApi } from './useApi'
 
 import { API_URL } from "./env"
+import {useSoundLevel} from './useSoundLevel';
+import {useStepLevels} from './useStepLevels';
+import {useHr} from './useHr';
 
 export default function App() {
   const [selectedIndex, setSelectedIndex] = useState(3);
   const { getInitial, sendUpdate, streamUuid } = useApi()
-  console.log(streamUuid)
+  const { level, startRecording } = useSoundLevel(sendUpdate)
+  const { steps, stepState } = useStepLevels()
+  useHr(sendUpdate)
+
+  useEffect(() => {
+    sendUpdate({
+      type: 'activity',
+      value: stepState,
+    })
+  }, [stepState])
 
   useEffect(() => {
     getInitial()
@@ -24,7 +36,7 @@ export default function App() {
         value,
       })
     }} />
-    <Player uri={`${API_URL}/stream/${streamUuid}`} />
+    <Player uri={streamUuid ? `${API_URL}/stream/${streamUuid}` : ''} />
     </View>
   );
 }
