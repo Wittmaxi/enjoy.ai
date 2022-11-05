@@ -16,6 +16,9 @@ def merge_audio (in_sources, out_file_name, gain={}, time_duration=60000):
 
         if source_name in gain:
             source_object += gain[source_name]
+        else:
+            source_object -= 100
+
 
         sound_length = len (source_object)
         caret = 0
