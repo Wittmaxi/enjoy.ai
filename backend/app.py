@@ -56,7 +56,7 @@ def request_audio():
 
         merge_audio(
             in_sources=partial_waveforms, 
-            out_file_name=f'{uuid}',
+            out_file_name=f'songs/{uuid}',
             time_duration=60000
         )
 
