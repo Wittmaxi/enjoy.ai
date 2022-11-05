@@ -8,7 +8,7 @@ export const useHr = (handleUpdate) => {
   useEffect(() => {
     const updateHr = () => {
       const rand = Math.random() * 180
-      if (rand > hr) {
+      if (rand < hr) {
         setHr((hr) => hr - 1)
       } else if (Math.random() > 0.95) {
         setHr(170)
