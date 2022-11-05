@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useApi } from './useApi'
 
 import { API_URL } from "./env"
+import HappyButton from './components/mood_buttons/HappyButton';
 
 export default function App() {
   const [selectedIndex, setSelectedIndex] = useState(3);

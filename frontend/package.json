@@ -18,7 +18,8 @@
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
     "react-native": "0.69.6",
-    "react-native-sensor-step": "^1.0.4"
+    "react-native-sensor-step": "^1.0.4",
+    "react-native-svg": "^9.13.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

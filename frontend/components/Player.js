@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { Icon } from "@rneui/base";
+import PlayButton from './PlayButton';
 
 import { usePlayAudio } from '../usePlayAudio'
 
@@ -27,6 +28,7 @@ export default ({ uri }) => {
 
   return (
     <View>
+      <PlayButton></PlayButton>
       <Pressable
         onPress={toggleStartStop}
         style={styles.btn}
