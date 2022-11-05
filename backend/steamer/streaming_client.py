@@ -1,6 +1,6 @@
 import requests
 
-class Streaming_client:
+class Streaming_Client:
     def __init__(self):
         self.FORMAT = pyaudio.paInt16
         self.CHANNELS = 2

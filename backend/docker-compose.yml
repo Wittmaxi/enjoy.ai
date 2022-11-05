@@ -18,8 +18,11 @@ services:
       - "5000:5000"
     depends_on:
       - db
+    environment:
+      FLASK_DEBUG: 1
+      FLASK_APP: ./app.py
     volumes:
-      - ./app.py:/app.py
+      - ./:/app
       - ./db/db_client.py:/db/db_client.py
 
 volumes:
