@@ -12,7 +12,6 @@ class Db_Client:
         self.isCon = False
 
     def connect(self):
-        print('here', flush=True)
         while True:
             try:
                 self.con = psycopg2.connect(**self.params)

@@ -5,7 +5,7 @@ from util.merge_audio import merge_audio
 def generate_audio(mood, db):
     song_path = '/generated_songs'
     output_path = f'{song_path}/{mood}.wav' 
-    print('hello', flush=True)
+
     if not os.path.exists(song_path):
         os.mkdir(song_path)
         os.mkdir(f'{song_path}/tmp')
@@ -15,9 +15,9 @@ def generate_audio(mood, db):
         duration=60,
         bpm=25.3 * mood,
         tone=math.pi * mood ** 0.8,
-        filename=f'{song_path}/synth.wav'
+        filename=f'{song_path}/tmp/{mood}_synth.wav'
     )
-    partial_waveforms.append(f'{song_path}/synth.wav')
+    partial_waveforms.append(f'{song_path}/tmp/{mood}_synth.wav')
 
     if mood > math.pi ** 2:
         partial_waveforms.append('soundfiles/binaural/binaural_high.wav')

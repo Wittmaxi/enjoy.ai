@@ -39,7 +39,7 @@ def request_audio():
         del json_["UUID"]
         mood = generate_mood(json_)
 
-        print("ADDING MOOD FOR UUID {uuid}", flush=True)
+        print(f"ADDING MOOD FOR UUID {uuid}", flush=True)
         
         clients.add_client_mood(uuid, str(mood))
 

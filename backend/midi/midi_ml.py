@@ -23,7 +23,7 @@ class AI_synth():
             track.append(MetaMessage('set_tempo', tempo=bpm2tempo(bpm)))
 
             note = int(min(127, max(0, random.gauss(tone, 20))))
-            vel = int(random.gauss(64, 10))
+            vel = min(100, int(random.gauss(80, 10)))
             track.append(Message('note_on', note=note, velocity=vel, time=delta))
             for j in range(delta // ticks_per_expr):
                 pitch = MAX_PITCHWHEEL * j * ticks_per_expr // delta
