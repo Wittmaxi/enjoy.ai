@@ -15,3 +15,8 @@ We then opted for generating the music procedurally, assisted by a Machine Learn
 
 Binaural Beats increase concentration, creativity while helping alleviate anxiety.
 Based on sensor data and on the "mood" the user enters, different nature sounds are added to the background. These sounds are sounds which are connotated with opsitive emotions and spark recovery in the listener. These sounds contain for example "Fire crackling" or "Rain drops".
+
+## Future
+
+Using the Core-10 questionnaire used in clinical trials, regular checkups on the patient will be done. In order to help each user individually, the machine learning model will be trained individually for each patient.
+Based on their feedback, the music would be tweaked to ideally uplift them individually.
