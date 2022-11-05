@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import AnxiousButton from './mood_buttons/AnxiousButton';
 import HappyButton from './mood_buttons/HappyButton';
+import MotivatedButton from './mood_buttons/MotivatedButton';
 import SadButton from './mood_buttons/SadButton';
 import SleepyButton from './mood_buttons/SleepyButton';
 
@@ -13,13 +15,17 @@ function renderSwitch(emotion) {
       return <SadButton></SadButton>
     case 'Sleepy':
       return <SleepyButton></SleepyButton>
+    case 'Motivated':
+      return <MotivatedButton></MotivatedButton>
+    case 'Anxious':
+      return <AnxiousButton></AnxiousButton>
     default:
       return <></>
   }
 }
 
 export default ({ handleUpdate }) => {
-  const values = ['Happy', 'Sad', 'Sleepy', 'Frustrated', 'Anxious']
+  const values = ['Happy', 'Sad', 'Sleepy', 'Motivated', 'Anxious']
   const [selectedValue, setSelectedValue] = useState(values[0])
 
   return (
@@ -43,6 +49,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: "space-evenly",
     margin: 20,
   },
   textCenter: {

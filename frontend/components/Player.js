@@ -4,6 +4,8 @@ import { Icon } from "@rneui/base";
 import PlayButton from './PlayButton';
 
 import { usePlayAudio } from '../usePlayAudio'
+import FancyPlay from './FancyPlay';
+import FancyPlayPaused from './FanncyPlayPaused';
 
 export default ({ uri }) => {
 
@@ -31,9 +33,8 @@ export default ({ uri }) => {
       <PlayButton></PlayButton>
       <Pressable
         onPress={toggleStartStop}
-        style={styles.btn}
       >
-        <Icon name={!isPlaying ? "play" : "pause"} type="antdesign" color="#000" />
+        {isPlaying ? <FancyPlayPaused></FancyPlayPaused> : <FancyPlay></FancyPlay>}
       </Pressable>
       <Pressable
         onPress={() => {
@@ -49,11 +50,6 @@ export default ({ uri }) => {
 }
 
 const styles = StyleSheet.create({
-  btn: {
-    padding: 50,
-    borderRadius: 100,
-    backgroundColor: "#BEEDFD",
-  },
   btnSmall: {
     paddingTop: 10,
     padding: 5,
