@@ -10,12 +10,13 @@ import {useStepLevels} from './useStepLevels';
 import {useHr} from './useHr';
 import HappyButton from './components/mood_buttons/HappyButton';
 import BigHeader from './components/util/Header';
+import DataDisplay from './components/DataDisplay';
 
 export default function App() {
   const [selectedIndex, setSelectedIndex] = useState(3);
   const { getInitial, sendUpdate, streamUuid } = useApi()
   const { steps, stepState } = useStepLevels()
-  useHr(sendUpdate)
+  const { hr } = useHr(sendUpdate)
 
   useEffect(() => {
     sendUpdate({
@@ -37,6 +38,7 @@ export default function App() {
         value,
       })
     }} />
+    <DataDisplay hr={hr} stepState={stepState}></DataDisplay> 
     <Text>{streamUuid}</Text>
     <Player uri={streamUuid ? `${API_URL}/stream/${streamUuid}` : ''} />
     </View>
@@ -45,7 +47,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50,
+    paddingTop: 55,
     paddingBottom: 50,
     flex: 1,
     backgroundColor: '#D1E9FF',
