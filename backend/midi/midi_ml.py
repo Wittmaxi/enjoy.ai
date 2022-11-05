@@ -16,13 +16,14 @@ class AI_synth():
         track.append(Message('program_change', program=12))
 
         delta = 300
-        ticks_per_expr = int(sys.argv[1]) if len(sys.argv) > 1 else 20
+        # ticks_per_expr = int(sys.argv[1]) if len(sys.argv) > 1 else 20
+        ticks_per_expr = 20
 
         while outfile.length < duration:
             track.append(MetaMessage('set_tempo', tempo=bpm2tempo(bpm)))
 
             note = int(min(127, max(0, random.gauss(tone, 20))))
-            vel = int(random.gauss(64, 10))
+            vel = min(100, int(random.gauss(80, 10)))
             track.append(Message('note_on', note=note, velocity=vel, time=delta))
             for j in range(delta // ticks_per_expr):
                 pitch = MAX_PITCHWHEEL * j * ticks_per_expr // delta
@@ -32,7 +33,7 @@ class AI_synth():
         return 
 
     def midi_to_wav(self, file, output_filename):
-        fs = FluidSynth('/usr/share/soundfonts/FluidR3_GM.sf2')
+        fs = FluidSynth('/app/FluidR3_GM.sf2')
         fs.midi_to_audio(file, output_filename)
 
     def ai_create_wav(self, duration: float, bpm: float, tone: float, filename) -> None:
