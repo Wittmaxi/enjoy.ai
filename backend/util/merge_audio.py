@@ -3,6 +3,7 @@ from pydub.playback import play
 
 # Overlays multiple audio sources and writes them to the file located at out_file_name
 # Will loop any audio source that is not long enough
+# Will default to one minute duration of sound
 #
 # in_sources: Array of Strings containing names of files
 # out_file_name: String with name of output file
