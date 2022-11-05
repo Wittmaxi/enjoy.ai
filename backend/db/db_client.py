@@ -76,8 +76,10 @@ INSERT INTO audio_files (mood, path_to_song) VALUES ('ABC', '/app/songs/CREMEBRU
         if self.isCon:
             self.cursor.execute("SELECT mood FROM uuid_mood WHERE uuid = %s", (UUID,))
             mood = self.cursor.fetchone()
+            if mood is None:
+                return 'No record'
             
-            self.cursor.execute("SELECT path_to_song FROM audio_files WHERE mood = %s", (mood,))
+            self.cursor.execute("SELECT path_to_song FROM audio_files WHERE mood = %s", (mood[0],))
             path = self.cursor.fetchone()
 
             return path
