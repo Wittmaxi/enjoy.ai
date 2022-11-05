@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS uuid_mood (
 INSERT INTO audio_files (mood, path_to_song) VALUES ('ABC', '/app/songs/CREMEBRULEE.wav') ON CONFLICT DO NOTHING
         ''')
 
-        self.cursor.execute('select * from audio;')
+        self.cursor.execute('select * from audio_files;')
         self.con.commit()
         self.isCon = True
 

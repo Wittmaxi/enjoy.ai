@@ -24,7 +24,7 @@ def generate_audio(mood, db):
     else:
         partial_waveforms.append('soundfiles/binaural/binaural_low.wav')
 
-    nature_sounds = [f'soundfiles/nature/{x}' for x in os.listdir('soundfiles/nature')]
+    nature_sounds = [f'/app/soundfiles/nature/{x}' for x in os.listdir('soundfiles/nature')]
     partial_waveforms.append(nature_sounds[int(mood) % 6])
 
     merge_audio(

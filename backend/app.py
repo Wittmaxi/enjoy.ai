@@ -50,7 +50,7 @@ def request_audio():
 def stream(UUID):
 
     # Get path to song
-    path = db.get_path_for_client(UUID)
+    path = db.get_path_for_client(UUID)[0]
 
     print(path, flush=True)
 
