@@ -44,7 +44,7 @@ export const useStepLevels = () => {
       // If no sensor permission - generate random data
       const takeStep = (seed, stepEvents) => {
         const newEvents = step(stepEvents)
-        const sleepTime = seed * Math.random() * 800
+        const sleepTime = seed * Math.random() * 1200
         setTimeout(() => takeStep(seed + 1 % 8, newEvents), sleepTime)
       }
       takeStep(1, [])

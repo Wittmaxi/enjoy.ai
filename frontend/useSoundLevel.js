@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { DeviceEventEmitter, PermissionsAndroid } from "react-native"
-import RNSoundLevel from 'react-native-sound-level'
 import { Audio } from 'expo-av'
 
 export const useSoundLevel = (handleUpdate) => {

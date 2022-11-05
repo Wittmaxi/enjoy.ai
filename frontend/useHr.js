@@ -10,12 +10,12 @@ export const useHr = (handleUpdate) => {
       const rand = Math.random() * 180
       if (rand > hr) {
         setHr((hr) => hr - 1)
-      } else if (Math.random() > 0.9) {
+      } else if (Math.random() > 0.95) {
         setHr(170)
       } else {
         setHr((hr) => hr + 1)
       }
-      setTimeout(() => updateHr(), 5000)
+      setTimeout(() => updateHr(), 10000)
     }
     updateHr()
   }, [])

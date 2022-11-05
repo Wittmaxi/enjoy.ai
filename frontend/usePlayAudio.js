@@ -5,6 +5,7 @@ export const usePlayAudio = () => {
   const [sound, setSound] = useState()
   const setAudio = async (uri) => {
     if (uri) {
+      console.log(uri)
       const sound = new Audio.Sound()
       setSound(sound)
       await sound.loadAsync({

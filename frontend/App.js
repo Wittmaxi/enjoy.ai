@@ -6,14 +6,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useApi } from './useApi'
 
 import { API_URL } from "./env"
-import {useSoundLevel} from './useSoundLevel';
 import {useStepLevels} from './useStepLevels';
 import {useHr} from './useHr';
+import HappyButton from './components/mood_buttons/HappyButton';
+import BigHeader from './components/util/Header';
 
 export default function App() {
   const [selectedIndex, setSelectedIndex] = useState(3);
   const { getInitial, sendUpdate, streamUuid } = useApi()
-  const { level, startRecording } = useSoundLevel(sendUpdate)
   const { steps, stepState } = useStepLevels()
   useHr(sendUpdate)
 
@@ -30,12 +30,14 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+    <BigHeader></BigHeader>
     <Moods handleUpdate={(value) => {
       sendUpdate({
         type: 'mood',
         value,
       })
     }} />
+    <Text>{streamUuid}</Text>
     <Player uri={streamUuid ? `${API_URL}/stream/${streamUuid}` : ''} />
     </View>
   );
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingBottom: 50,
     flex: 1,
-    backgroundColor: '#A7FCCF',
+    backgroundColor: '#D1E9FF',
     alignItems: 'center',
     justifyContent: 'space-between',
   },

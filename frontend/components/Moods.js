@@ -1,8 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import AnxiousButton from './mood_buttons/AnxiousButton';
+import HappyButton from './mood_buttons/HappyButton';
+import MotivatedButton from './mood_buttons/MotivatedButton';
+import SadButton from './mood_buttons/SadButton';
+import SleepyButton from './mood_buttons/SleepyButton';
+
+
+function renderSwitch(emotion) {
+  switch(emotion) {
+    case 'Happy':
+      return <HappyButton></HappyButton>
+    case 'Sad':
+      return <SadButton></SadButton>
+    case 'Sleepy':
+      return <SleepyButton></SleepyButton>
+    case 'Motivated':
+      return <MotivatedButton></MotivatedButton>
+    case 'Anxious':
+      return <AnxiousButton></AnxiousButton>
+    default:
+      return <></>
+  }
+}
 
 export default ({ handleUpdate }) => {
-  const values = ['Happy', 'Sad', 'Contempt', 'Frustrated', 'Anxious']
+  const values = ['Happy', 'Sad', 'Sleepy', 'Motivated', 'Anxious']
   const [selectedValue, setSelectedValue] = useState(values[0])
 
   return (
@@ -14,21 +37,8 @@ export default ({ handleUpdate }) => {
             setSelectedValue(value)
             handleUpdate(values.indexOf(value) + 1)
           }}
-          style={[
-            styles.button,
-            selectedValue === value && styles.selected,
-          ]}
         >
-          <View style={styles.textCenter}>
-            <Text
-              style={[
-                styles.buttonLabel,
-                selectedValue === value && styles.selectedLabel,
-              ]}
-            >
-              {value}
-            </Text>
-          </View>
+            {renderSwitch(value)}
         </TouchableOpacity>
       ))}
     </View>
@@ -39,6 +49,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: "space-evenly",
     margin: 20,
   },
   textCenter: {
