@@ -11,7 +11,13 @@ db.connect()
 
 clients = Clients(db)
 
-
+"""
+|   Requesting audio from the server.   
+|   
+|   Input: JSON with statistics from the application AND a UUID (User ID) if the FE has one
+|   
+|   Output: 
+"""
 @app.route('/request_audio', methods=['POST'])
 def request_audio():
     json_ = request.json
@@ -20,7 +26,7 @@ def request_audio():
         new_client = clients.add_client()
         mood = generate_mood(json_)
         clients.add_client_mood(new_client, str(mood)) 
-        return jsonify(new_client)
+        return jsonify({"UUID": new_client})
     else:
         uuid = json_["UUID"]
         del json_["UUID"]
@@ -33,7 +39,7 @@ def request_audio():
         # Generate SONG!
         print(mood)
 
-        return jsonify(uuid)
+        return jsonify({"UUID": uuid})
 
 @app.route('/stream/<UUID>', methods=['GET'])
 def stream(UUID):
@@ -53,8 +59,6 @@ def stream(UUID):
                 yield data
                 data = fwav.read(1024)
     return Response(generate("/app/songs/CREMEBRULEE.wav"), mimetype="audio/x-wav")
-    # return jsonify(path)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
