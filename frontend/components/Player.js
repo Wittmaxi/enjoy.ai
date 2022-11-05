@@ -4,14 +4,17 @@ import { Icon } from "@rneui/base";
 
 import { usePlayAudio } from '../usePlayAudio'
 
-export default () => {
+export default ({ uri }) => {
 
   const [isPlaying, setIsPlaying] = useState(false)
   const { setAudio, play, pause, reset } = usePlayAudio()
 
   useEffect(() => {
-    setAudio('https://stream.bauermedia.fi/radionova/radionova_64.aac')
-  }, [])
+    console.log('URI: ', uri)
+    setAudio(uri)
+    // setAudio('http://35.228.240.243/stream/92d653a5-25ad-4ec1-ad06-02f0149f0007')
+    // setAudio('https://stream.bauermedia.fi/radionova/radionova_64.aac')
+  }, [uri])
 
   const toggleStartStop = () => {
     setIsPlaying(!isPlaying)
