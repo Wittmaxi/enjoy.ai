@@ -1,6 +1,10 @@
+from math import e
+from flask import app
 import psycopg2
 import time
 from db.config import *
+from util.generate_audio import generate_audio
+
 
 class Db_Client:
     def __init__(self):
@@ -8,6 +12,7 @@ class Db_Client:
         self.isCon = False
 
     def connect(self):
+        print('here', flush=True)
         while True:
             try:
                 self.con = psycopg2.connect(**self.params)
@@ -32,6 +37,12 @@ CREATE TABLE IF NOT EXISTS uuid_mood (
         self.cursor.execute('''
 INSERT INTO audio_files (mood, path_to_song) VALUES ('ABC', '/app/songs/CREMEBRULEE.wav') ON CONFLICT DO NOTHING
         ''')
+
+        audio_helper = Audio_helper()
+        for mood_v in range(25):
+            self.cursor.execute("INSERT INTO audio_files (mood, path_to_song) VALUES (%s, %s)", 
+                                (mood_v, generate_audio(mood_v)))
+
         self.cursor.execute('select * from audio;')
         self.con.commit()
         self.isCon = True
@@ -79,3 +90,9 @@ INSERT INTO audio_files (mood, path_to_song) VALUES ('ABC', '/app/songs/CREMEBRU
         else:
             return "No Connection" 
             
+    def add_generated_audio(self, mood_v, path):
+        if self.isCon:
+            self.cursor.execute("INSERT INTO audio_files (mood, path_to_song) VALUES (%s, %s)", (mood_v, path))
+        else:
+            return "No Connection"
+
