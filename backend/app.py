@@ -3,7 +3,7 @@ from flask import Flask, Response, jsonify
 from flask import request
 from db.db_client import Db_Client
 from clients import Clients
-from mood_gen import generate_mood
+from backend.mood_gen_ml import generate_mood
 app = Flask(__name__)
 
 db = Db_Client()
@@ -43,17 +43,17 @@ def stream(UUID):
 
     print(path)
 
-    # def generate(song_path):
-    #     with open(song_path, "rb") as fwav:
-    #         data = fwav.read(1024)
-    #         while True:
-    #             # if data == b'':
-    #             #     fwav.seek(0)
-    #             # else:
-    #             yield data
-    #             data = fwav.read(1024)
-    # return Response(generate(song_path), mimetype="audio/x-wav")
-    return jsonify(path)
+    def generate(song_path):
+        with open(song_path, "rb") as fwav:
+            data = fwav.read(1024)
+            while True:
+                # if data == b'':
+                #     fwav.seek(0)
+                # else:
+                yield data
+                data = fwav.read(1024)
+    return Response(generate("/app/songs/CREMEBRULEE.wav"), mimetype="audio/x-wav")
+    # return jsonify(path)
 
 
 if __name__ == "__main__":

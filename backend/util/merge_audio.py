@@ -12,7 +12,7 @@ def merge_audio (in_sources, out_file_name, time_duration=60000):
 
     for source_name in in_sources:
         source_object = AudioSegment.from_file (source_name)
-        
+
         sound_length = len (source_object)
         caret = 0
 
