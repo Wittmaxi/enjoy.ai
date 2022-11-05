@@ -5,7 +5,7 @@ from db.db_client import Db_Client
 from clients import Clients
 from util.generate_audio import generate_audio
 from util.merge_audio import merge_audio
-from weather import Weather_model
+from weather import get_temperature
 from midi.midi_ml import AI_synth
 import math
 from mood_gen_ml import generate_mood

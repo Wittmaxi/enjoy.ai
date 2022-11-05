@@ -38,11 +38,6 @@ CREATE TABLE IF NOT EXISTS uuid_mood (
 INSERT INTO audio_files (mood, path_to_song) VALUES ('ABC', '/app/songs/CREMEBRULEE.wav') ON CONFLICT DO NOTHING
         ''')
 
-        audio_helper = Audio_helper()
-        for mood_v in range(25):
-            self.cursor.execute("INSERT INTO audio_files (mood, path_to_song) VALUES (%s, %s)", 
-                                (mood_v, generate_audio(mood_v)))
-
         self.cursor.execute('select * from audio;')
         self.con.commit()
         self.isCon = True

@@ -55,7 +55,3 @@ def get_temperature(location):
 
     # data['t2m']['values'][-1] # temperature, last observation
     return {'temperature': temp, 'wind': wind_speed, 'rain': rain}
-
-if __name__=='__main__':
-    print(get_temperature('Espoo Tapiola'))
-    

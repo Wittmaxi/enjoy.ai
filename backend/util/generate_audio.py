@@ -1,6 +1,6 @@
 from midi.midi_ml import AI_synth
 import os, math
-from merge_audio import merge_audio
+from util.merge_audio import merge_audio
 
 def generate_audio(mood, db):
     song_path = '/generated_songs'
