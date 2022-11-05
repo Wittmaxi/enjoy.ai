@@ -1,10 +1,9 @@
 import psycopg2
 from db.config import *
 
-class Db_client:
+class Db_Client:
     def __init__(self):
         self.params = config()
-        print(self.params)
 
     def connect(self):
         self.con = psycopg2.connect(**self.params)

@@ -1,19 +1,26 @@
 import os
-from flask import Flask, Response
+from flask import Flask, Response, jsonify
 from flask import request
-from db.db_client import Db_client
+from db.db_client import Db_Client
+from clients import Clients
 app = Flask(__name__)
 
-db = Db_client()
+db = Db_Client()
 db.connect()
 
+clients = Clients()
 
 
 
 @app.route('/request_audio', methods=['POST'])
 def request_audio():
-    print(request.get_json())
-    return '<h1>Hello from Flask & Docker</h2>'
+    json_ = request.json
+    print(type(json_), flush=True)
+    if "UUID" not in json_.keys():
+        new_client = clients.add_client()
+        return new_client
+    else:
+        print("DO COOL SHIT", flush=True) 
 
 @app.route('/stream/<song_path>', methods=['GET'])
 def stream(song_path):
@@ -21,10 +28,10 @@ def stream(song_path):
         with open(song_path, "rb") as fwav:
             data = fwav.read(1024)
             while True:
-                if data == b'':
-                    fwav.seek(0)
-                else:
-                    yield data
+                # if data == b'':
+                #     fwav.seek(0)
+                # else:
+                yield data
                 data = fwav.read(1024)
     return Response(generate(song_path), mimetype="audio/x-wav")
 
