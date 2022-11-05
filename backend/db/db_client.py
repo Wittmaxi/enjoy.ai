@@ -54,7 +54,7 @@ INSERT INTO audio_files (mood, path_to_song) VALUES ('ABC', '/app/songs/CREMEBRU
 
     def add_client_mood(self, UUID, mood_v):
         if self.isCon:
-            self.cursor.execute("INSERT INTO uuid_mood (uuid, mood) VALUES (%s, %s)", (UUID, mood_v))
+            self.cursor.execute("INSERT INTO uuid_mood (uuid, mood) VALUES (%s, %s) ON CONFLICT (uuid) DO UPDATE SET uuid = %s", (UUID, mood_v, UUID))
             self.cursor.execute("SELECT uuid, mood FROM uuid_mood WHERE uuid = %s", (UUID,))
             return self.cursor.fetchone()
         else:
