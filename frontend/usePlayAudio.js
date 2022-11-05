@@ -19,9 +19,14 @@ export const usePlayAudio = () => {
     sound?.pauseAsync()
   }
 
+  const reset = () => {
+    sound?.stopAsync()
+  }
+
   return {
     setAudio,
     play,
-    pause
+    pause,
+    reset,
   }
 }

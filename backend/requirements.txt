@@ -4,3 +4,4 @@ fmiopendata
 mido
 fluidsynth
 midi2audio
+pydub
