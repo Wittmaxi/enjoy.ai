@@ -53,7 +53,6 @@ def stream(UUID):
     path = db.get_path_for_client(UUID)[0]
 
     print(path, flush=True)
-
     def generate(song_path):
         with open(song_path, "rb") as fwav:
             data = fwav.read(1024)
@@ -63,8 +62,10 @@ def stream(UUID):
                 # else:
                 yield data
                 data = fwav.read(1024)
-    # return Response(generate("/app/songs/CREMEBRULEE.wav"), mimetype="audio/x-wav")
-    return Response(generate(path), mimetype="audio/x-wav")
+    if os.path.exists(path):
+        return Response(generate(path), mimetype="audio/x-wav")
+    else:
+        return Response(generate("/app/songs/CREMEBRULEE.wav"), mimetype="audio/x-wav")
 
 if __name__ == "__main__":
     app.run(debug=True)
