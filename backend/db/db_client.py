@@ -87,7 +87,7 @@ INSERT INTO audio_files (mood, path_to_song) VALUES ('ABC', '/app/songs/CREMEBRU
             
     def add_generated_audio(self, mood_v, path):
         if self.isCon:
-            self.cursor.execute("INSERT INTO audio_files (mood, path_to_song) VALUES (%s, %s)", (mood_v, path))
+            self.cursor.execute("INSERT INTO audio_files (mood, path_to_song) VALUES (%s, %s) ON CONFLICT (mood) DO UPDATE SET path_to_song = %s", (mood_v, path, path))
         else:
             return "No Connection"
 
