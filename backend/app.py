@@ -1,8 +1,12 @@
 import os
-from flask import Flask, Response, jsonify
+from flask import Flask, Response, current_app, jsonify
 from flask import request
 from db.db_client import Db_Client
 from clients import Clients
+from util.merge_audio import merge_audio
+from weather import Weather_model
+from midi.midi_ml import AI_synth
+import Math
 from backend.mood_gen_ml import generate_mood
 app = Flask(__name__)
 
@@ -22,10 +26,38 @@ clients = Clients(db)
 def request_audio():
     json_ = request.json
 
+    def generate_audio(uuid, mood):
+        partial_waveforms = []
+
+        curr_weather = Weather_model().get_temperature('Espoo Tapiola')
+
+        AI_synth().ai_create_wav(
+            duration=60,
+            bpm=(
+                    10 * curr_weather['temperature']**0.9
+                    + 15 * curr_weather['wind_speed']
+                    - 100 * curr_weather['rain'] ** 0.5
+            ),
+            tone=(Math.sqrt(mood) * 13.4 - curr_weather['rain'] * Math.Pi),
+            filename=f'{uuid}/synth.wav'
+        )
+
+        partial_waveforms.append(f'{uuid}/synth.wav')
+
+        merge_audio(
+            in_sources=partial_waveforms, 
+            out_file_name=f'{uuid}',
+            time_duration=60000
+        )
+
     if "UUID" not in json_.keys():
         new_client = clients.add_client()
         mood = generate_mood(json_)
         clients.add_client_mood(new_client, str(mood)) 
+
+        # generating personalized audio for client
+        generate_audio(new_client, mood)
+
         return jsonify({"UUID": new_client})
     else:
         uuid = json_["UUID"]
@@ -36,8 +68,8 @@ def request_audio():
         
         clients.add_client_mood(uuid, str(mood))
 
-        # Generate SONG!
-        print(mood)
+        # generating personalized audio for client
+        generate_audio(new_client, mood)
 
         return jsonify({"UUID": uuid})
 
