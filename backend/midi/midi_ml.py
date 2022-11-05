@@ -5,6 +5,7 @@ from mido import Message, MetaMessage, MidiFile, MidiTrack, MAX_PITCHWHEEL, bpm2
 import fluidsynth
 from midi2audio import FluidSynth
 
+soundfont_dir = '/app/FluidR3_GM.sf2'
 
 class AI_synth():
     # create random midi, save file as 
@@ -23,7 +24,8 @@ class AI_synth():
             track.append(MetaMessage('set_tempo', tempo=bpm2tempo(bpm)))
 
             note = int(min(127, max(0, random.gauss(tone, 20))))
-            vel = min(100, int(random.gauss(80, 10)))
+            # vel = min(127, int(random.gauss(200, 10)))
+            vel = 127
             track.append(Message('note_on', note=note, velocity=vel, time=delta))
             for j in range(delta // ticks_per_expr):
                 pitch = MAX_PITCHWHEEL * j * ticks_per_expr // delta
@@ -33,7 +35,7 @@ class AI_synth():
         return 
 
     def midi_to_wav(self, file, output_filename):
-        fs = FluidSynth('/app/FluidR3_GM.sf2')
+        fs = FluidSynth(soundfont_dir)
         fs.midi_to_audio(file, output_filename)
 
     def ai_create_wav(self, duration: float, bpm: float, tone: float, filename) -> None:
@@ -42,6 +44,7 @@ class AI_synth():
         self.midi_to_wav(tmp_name, filename)
     
 if __name__=='__main__':
+    soundfont_dir = './FluidR3_GM.sf2'
     synth = AI_synth()
     # midi_file = 'ai_output.mid'
     wav_file = 'ai_output.wav'
