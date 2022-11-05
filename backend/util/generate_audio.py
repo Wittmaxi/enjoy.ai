@@ -10,14 +10,18 @@ def generate_audio(mood, db):
         os.mkdir(song_path)
         os.mkdir(f'{song_path}/tmp')
     partial_waveforms = []
+    gains = {}
 
+
+    synth_path = f'{song_path}/tmp/{mood}_synth.wav'
     AI_synth().ai_create_wav(
         duration=60,
         bpm=25.3 * mood,
         tone=math.pi * mood ** 0.8,
         filename=f'{song_path}/tmp/{mood}_synth.wav'
     )
-    partial_waveforms.append(f'{song_path}/tmp/{mood}_synth.wav')
+    partial_waveforms.append(synth_path)
+    gains[synth_path] = 10
 
     if mood > math.pi ** 2:
         partial_waveforms.append('soundfiles/binaural/binaural_high.wav')

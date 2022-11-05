@@ -9,6 +9,7 @@ from weather import get_temperature
 from midi.midi_ml import AI_synth
 import math
 from mood_gen_ml import generate_mood
+import time
 app = Flask(__name__)
 
 db = Db_Client()
@@ -32,7 +33,10 @@ def request_audio():
         mood = generate_mood(json_)
         clients.add_client_mood(new_client, str(mood)) 
 
+        before = time.time_ns()
         generate_audio(mood, db)
+        print(f'Generating audio took {(time.time_ns() - before) * 1e9}s')
+
         return jsonify({"UUID": new_client})
     else:
         uuid = json_["UUID"]
@@ -42,8 +46,10 @@ def request_audio():
         print(f"ADDING MOOD FOR UUID {uuid}", flush=True)
         
         clients.add_client_mood(uuid, str(mood))
-
+        before = time.time_ns()
         generate_audio(mood, db)
+        print(f'Generating audio took {(time.time_ns() - before) * 1e9}s')
+
         return jsonify({"UUID": uuid})
 
 @app.route('/stream/<UUID>', methods=['GET'])

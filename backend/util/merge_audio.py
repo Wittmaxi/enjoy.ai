@@ -8,11 +8,14 @@ from pydub.playback import play
 # in_sources: Array of Strings containing names of files
 # out_file_name: String with name of output file
 #
-def merge_audio (in_sources, out_file_name, time_duration=60000):
+def merge_audio (in_sources, out_file_name, gain={}, time_duration=60000):
     base_source = AudioSegment.silent(duration=time_duration)
 
     for source_name in in_sources:
         source_object = AudioSegment.from_file (source_name)
+
+        if source_name in gain:
+            source_object += gain[source_name]
 
         sound_length = len (source_object)
         caret = 0
