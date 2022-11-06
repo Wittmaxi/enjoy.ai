@@ -1,4 +1,4 @@
-# A soundtrack for real life: Enjoy.Ai
+# Music Therapy comes alive: enjoy.Ai
 
 ![Hero Image](https://github.com/Wittmaxi/enjoy.ai/blob/main/resources/Header.svg)
 
