@@ -9,7 +9,7 @@ import FancyPlayPause from './FanncyPlayPause';
 export default ({ uri }) => {
 
   const [isPlaying, setIsPlaying] = useState(false)
-  const { setAudio, play, pause, reset } = usePlayAudio()
+  const { setAudio, loading, play, pause, reset } = usePlayAudio()
 
   useEffect(() => {
     setAudio(uri)
@@ -29,7 +29,7 @@ export default ({ uri }) => {
       <Pressable
         onPress={toggleStartStop}
       >
-        {isPlaying ? <FancyPlayPause></FancyPlayPause> : <FancyPlay></FancyPlay>}
+        {isPlaying ? <FancyPlayPause></FancyPlayPause> : <FancyPlay loading={loading}></FancyPlay>}
       </Pressable>
       <Pressable
         onPress={() => {

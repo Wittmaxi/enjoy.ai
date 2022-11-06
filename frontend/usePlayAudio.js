@@ -5,29 +5,47 @@ export const usePlayAudio = () => {
   const [sound, setSound] = useState()
   const setAudio = async (uri) => {
     if (uri) {
-      console.log(uri)
+      console.log('AUDIO ', uri)
       const sound = new Audio.Sound()
-      setSound(sound)
-      await sound.loadAsync({
-        uri
-      })
+      try {
+        await sound.loadAsync({
+          uri
+        })
+        setSound(sound)
+        console.log('AUDIO load done')
+      } catch (e) {
+        console.error('LoadAudioError', e)
+      }
     }
   }
 
-  const play = () => {
-    sound?.playAsync()
+  const play = async () => {
+    try {
+      sound?.playAsync()
+    } catch (e) {
+      console.error('PlayError', e)
+    }
   }
 
-  const pause = () => {
-    sound?.pauseAsync()
+  const pause = async () => {
+    try {
+      sound?.pauseAsync()
+    } catch (e) {
+      console.error('PauseError', e)
+    }
   }
 
-  const reset = () => {
-    sound?.stopAsync()
+  const reset = async () => {
+    try {
+      sound?.stopAsync()
+    } catch (e) {
+      console.error('StopError', e)
+    }
   }
 
   return {
     setAudio,
+    loading: sound === undefined,
     play,
     pause,
     reset,

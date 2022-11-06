@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "enjoy.ai.app",
-    "slug": "enjoy.ai.app",
+    "owner": "tobbe-j",
+    "slug": "enjoyaiapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,21 +19,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "enjoy.ai"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "enjoy.ai"
+      "package": "com.tobbej.enjoyaiapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "./android-manifest.plugin.js"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "34b7b322-bee9-458a-8228-57c9b9afe652"
+      }
+    }
   }
 }

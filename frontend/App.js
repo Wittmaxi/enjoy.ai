@@ -39,7 +39,6 @@ export default function App() {
       })
     }} />
     <DataDisplay hr={hr} stepState={stepState}></DataDisplay> 
-    <Text>{streamUuid}</Text>
     <Player uri={streamUuid ? `${API_URL}/stream/${streamUuid}` : ''} />
     </View>
   );

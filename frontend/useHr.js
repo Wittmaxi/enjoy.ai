@@ -22,7 +22,7 @@ export const useHr = (handleUpdate) => {
 
   useEffect(() => {
     let newLevel = 1
-    console.log(hr, hrLevel)
+    // console.log(hr, hrLevel)
     if (hr > 160) {
       // High
       newLevel = 5

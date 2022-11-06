@@ -5,10 +5,6 @@ import Shoe from './data/Shoe';
 
 export default ({ hr, stepState }) => {
 
-//   useEffect(() => {
-//     setAudio(uri)
-//   }, [uri])
-
   return (
     <View style={styles.container}>
         <Heart hr={hr}></Heart>
@@ -22,9 +18,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
-    alignItems:'center',
-    height:'10%',
+    alignItems: 'stretch',
+    height:'20%',
     width:'25%',
-    paddingTop:'6%'
+    paddingTop:'4%'
 }
 });
