@@ -2,19 +2,27 @@
 
 ![Hero Image](https://github.com/Wittmaxi/enjoy.ai/blob/main/resources/Header.svg)
 
-Enjoy.AI generates music that accompagnies you in every situation of life. 
+Enjoy.AI generates music that accompanies you in every situation of life. 
 We envelop you in a **warm cocoon of music** that adapts to your surroundings and helps you in finding your happy-space while helping you focus on your tasks.
-Using procedural generation, **we create soundscapes** adapted to your location, the surrounding noise-levels, the weather data, your podometer and your heartbeat.
+Using procedural generation, **we create soundscapes** adapted to your location, the surrounding noise-levels, the weather data, your pedometer and your heartbeat.
 
-In order to help you concentrate and in order to help you relieve your anxieties, we coordinate the sensor data to enhance your tune with [Binaural Beats](https://en.wikipedia.org/wiki/Beat_(acoustics)#Binaural_beats) and with subtle sounds of nature. 
+## How to run
+Clone the repository
+```
+$ git clone git@github.com:Wittmaxi/enjoy.ai.git
+$ cd enjoy.ai
+```
+check out the readmes in the corresponding subdirectories for instructions on how to run either the frontend or the backend.
+
+<!-- In order to help you concentrate and in order to help you relieve your anxieties, we coordinate the sensor data to enhance your tune with [Binaural Beats](https://en.wikipedia.org/wiki/Beat_(acoustics)#Binaural_beats) and with subtle sounds of nature.  -->
 
 ## Music Generation
 
-Our first approach was, to generate the music with a deep-learning model. Our first iteration used jukebox from OpenAi to generate songs based on your mood. This approach did not allow for real-time optimization and fell short because of how uncanny the songs could be.
-We then opted for generating the music procedurally, assisted by a mood matching unit, which yielded far better results.
+Our plan was to generate the music using a pre-existing deep-learning model. Looking into it, it turned out to be a harder problem than anticipated. There are no real solutions for this on the market, so we opted for generating the music ourselves, which yielded workable results.
 
-Binaural Beats increase concentration, creativity while helping alleviate anxiety.
-Based on sensor data and on the "mood" the user enters, different nature sounds are added to the background. These sounds are sounds which are connotated with opsitive emotions and spark recovery in the listener. These sounds contain for example "Fire crackling" or "Rain drops".
+We generate a mix of three different kinds of music for the user: we generate a *MIDI* composition depending on the state of the user, and choose an appropriate nature-themed background noise from a curated collection. On top of this we mix in some *binaural beats*, which are known to have positive effects on concentration, creativity and anxiety.
+<!-- Binaural Beats increase concentration, creativity while helping alleviate anxiety. -->
+<!-- Based on sensor data and on the "mood" the user enters, different nature sounds are added to the background. These sounds are sounds which are connotated with opsitive emotions and spark recovery in the listener. These sounds contain for example "Fire crackling" or "Rain drops". -->
 
 ![Tech Image](https://github.com/Wittmaxi/enjoy.ai/blob/main/resources/Tech.svg)
 

@@ -10,9 +10,10 @@ This is the mobile front-end project for the enjoy.ai project and requires eithe
 ## Usage
 
 #### Run it using the Expo app
-
-`npm start`
-
+```
+cd frontend
+npm start
+```
 - Scan the QR code from the Expo app to build and start enjoy\.ai
 
 ## Structure
