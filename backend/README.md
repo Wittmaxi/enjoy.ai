@@ -29,4 +29,4 @@ Each user gets their own unique session when connecting to be able to recieve th
 Based on the user data from the client, additional data sources such as weather data the mood engine tunes the parameters individually for each user.The mood engine could further be expanded to contain a feedback loop from the user to continuosly improve and revise the its output.
 
 ### Sound generation
-Based on the parameters the sound generation combines binaural beats, natural sounds (emotional acoustic association) and purely generated tones, combined into optimal sound for every occasion. The generation is soft-realtime and can keep up with quick chagnes in the desires of the users. 
+Based on the parameters the sound generation combines binaural beats, natural sounds (emotional acoustic association) and purely generated tones, combined into optimal sound for every occasion. The generation is soft-realtime and can keep up with quick changes in the desires of the users. 
