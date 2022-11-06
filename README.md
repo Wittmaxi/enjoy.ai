@@ -49,17 +49,16 @@ enjoy.ai
 │   ├── midi
 │   │   └── midi_ml.py
 │   ├── mood_gen_ml.py
+│   ├── README.md
 │   ├── requirements.txt
 │   ├── safe_install.sh
-│   ├── songs
-│   │   └── CREMEBRULEE.wav
 │   ├── soundfiles
 │   │   ├── binaural
 │   │   │   ├── binaural_high.wav
 │   │   │   └── binaural_low.wav
+│   │   ├── CREMEBRULEE.wav
 │   │   └── nature
 │   │       ├── birds.wav
-│   │       ├── distant_traffic.mp3
 │   │       ├── fire.wav
 │   │       ├── rain.mp3
 │   │       ├── rustling_leaves.mp3
@@ -102,6 +101,7 @@ enjoy.ai
 │   ├── env.js
 │   ├── package.json
 │   ├── package-lock.json
+│   ├── README.md
 │   ├── useApi.js
 │   ├── useHr.js
 │   ├── usePlayAudio.js
@@ -109,6 +109,7 @@ enjoy.ai
 │   └── useStepLevels.js
 ├── README.md
 └── resources
+    ├── example.wav
     ├── Header.svg
     └── Tech.svg
 ```
