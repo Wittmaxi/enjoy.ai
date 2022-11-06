@@ -14,6 +14,8 @@ $ cd enjoy.ai
 ```
 check out the readmes in the corresponding subdirectories for instructions on how to run either the frontend or the backend.
 
+An example audio [file](resources/example.wav) can be found in the resources, to hear what kind of creativity anjoy.ai posesses.
+
 <!-- In order to help you concentrate and in order to help you relieve your anxieties, we coordinate the sensor data to enhance your tune with [Binaural Beats](https://en.wikipedia.org/wiki/Beat_(acoustics)#Binaural_beats) and with subtle sounds of nature.  -->
 
 ## Music Generation
