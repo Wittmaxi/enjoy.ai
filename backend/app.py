@@ -58,7 +58,7 @@ def stream(UUID):
     # Get path to song
     path = db.get_path_for_client(UUID)
     if path is None:
-        path = "/app/songs/CREMEBRULEE.wav"
+        path = "/app/soundfiles/CREMEBRULEE.wav"
     else:
         path = path[0]
 
