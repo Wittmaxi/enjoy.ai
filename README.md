@@ -22,3 +22,83 @@ Based on sensor data and on the "mood" the user enters, different nature sounds 
 
 Using the Core-10 questionnaire used in clinical trials, regular checkups on the patient will be done. In order to help each user individually, the machine learning model will be trained individually for each patient.
 Based on their feedback, the music would be tweaked to ideally uplift them individually.
+
+```
+enjoy.ai
+├── backend
+│   ├── app.py
+│   ├── clients.py
+│   ├── db
+│   │   ├── config.py
+│   │   ├── database.ini
+│   │   ├── db_client.py
+│   │   ├── __init__.py
+│   │   └── init.sql
+│   ├── docker-compose.yml
+│   ├── Dockerfile
+│   ├── midi
+│   │   └── midi_ml.py
+│   ├── mood_gen_ml.py
+│   ├── requirements.txt
+│   ├── safe_install.sh
+│   ├── songs
+│   │   └── CREMEBRULEE.wav
+│   ├── soundfiles
+│   │   ├── binaural
+│   │   │   ├── binaural_high.wav
+│   │   │   └── binaural_low.wav
+│   │   └── nature
+│   │       ├── birds.wav
+│   │       ├── distant_traffic.mp3
+│   │       ├── fire.wav
+│   │       ├── rain.mp3
+│   │       ├── rustling_leaves.mp3
+│   │       └── waves.wav
+│   ├── steamer
+│   │   ├── __init__.py
+│   │   └── streaming_client.py
+│   ├── util
+│   │   ├── generate_audio.py
+│   │   ├── __init__.py
+│   │   └── merge_audio.py
+│   └── weather.py
+├── frontend
+│   ├── android-manifest.plugin.js
+│   ├── App.js
+│   ├── app.json
+│   ├── assets
+│   │   ├── adaptive-icon.png
+│   │   ├── favicon.png
+│   │   ├── icon.png
+│   │   └── splash.png
+│   ├── babel.config.js
+│   ├── components
+│   │   ├── data
+│   │   │   ├── Heart.js
+│   │   │   └── Shoe.js
+│   │   ├── DataDisplay.js
+│   │   ├── FancyPlay.js
+│   │   ├── FanncyPlayPause.js
+│   │   ├── mood_buttons
+│   │   │   ├── AnxiousButton.js
+│   │   │   ├── HappyButton.js
+│   │   │   ├── MotivatedButton.js
+│   │   │   ├── SadButton.js
+│   │   │   └── SleepyButton.js
+│   │   ├── Moods.js
+│   │   ├── Player.js
+│   │   └── util
+│   │       └── Header.js
+│   ├── env.js
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── useApi.js
+│   ├── useHr.js
+│   ├── usePlayAudio.js
+│   ├── useSoundLevel.js
+│   └── useStepLevels.js
+├── README.md
+└── resources
+    ├── Header.svg
+    └── Tech.svg
+```
