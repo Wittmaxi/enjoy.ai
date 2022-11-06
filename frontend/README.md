@@ -13,7 +13,7 @@ This is the mobile front-end project for the enjoy.ai project and requires eithe
 
 `npm start`
 
-- Scan the QR code from the app
+- Scan the QR code from the Expo app to build and start enjoy\.ai
 
 ## Structure
 The app consists of a very simple to use and intuitive base screen where the user can control the music and view all the information they need at a glance.
